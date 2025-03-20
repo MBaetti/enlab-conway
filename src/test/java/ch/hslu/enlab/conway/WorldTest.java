@@ -9,19 +9,19 @@ class WorldTest {
     @Test
     void emptyWorldStaysEmpty() {
         World world = new World().nextGeneration();
-        assertEquals(world(""), world.toString());
+        assertEquals(world(""), world.showWorld());
     }
 
     @Test
     void printWorld() {
         World world = new World("X X", " X ", "X X");
-        assertEquals(world("X X,\n X ,\nX X"), world.toString());
+        assertEquals(world("X X,\n X ,\nX X"), world.showWorld());
     }
 
     @Test
     void singleCellDies() {
         World world = new World("X").nextGeneration();
-        assertEquals(world(" "), world.toString());
+        assertEquals(world(" "), world.showWorld());
     }
 
     private static String world(String content) {
@@ -31,7 +31,7 @@ class WorldTest {
     @Test
     void twoCellsDie() {
         World world = new World("XX").nextGeneration();
-        assertEquals(world("  "), world.toString());
+        assertEquals(world("  "), world.showWorld());
     }
 
     @Test
@@ -39,11 +39,11 @@ class WorldTest {
         // Test a blinker pattern (period 2 oscillator)
         World world = new World("   ", " XXX", "   ");
         World nextGen = world.nextGeneration();
-        assertEquals(world("  X,\n  X ,\n  X"), nextGen.toString());
+        assertEquals(world("  X,\n  X ,\n  X"), nextGen.showWorld());
         
         // Should return to original state after another generation
         World thirdGen = nextGen.nextGeneration();
-        assertEquals(world("   ,\n XXX,\n   "), thirdGen.toString());
+        assertEquals(world("   ,\n XXX,\n   "), thirdGen.showWorld());
     }
 
     @Test
@@ -51,11 +51,11 @@ class WorldTest {
         // Test a blinker pattern (period 2 oscillator)
         World world = new World(" X ", " X ", " X ");
         World nextGen = world.nextGeneration();
-        assertEquals(world("   ,\nXXX,\n   "), nextGen.toString());
+        assertEquals(world("   ,\nXXX,\n   "), nextGen.showWorld());
     
         // Should return to original state after another generation
         World thirdGen = nextGen.nextGeneration();
-        assertEquals(world(" X ,\n X ,\n X "), thirdGen.toString());
+        assertEquals(world(" X ,\n X ,\n X "), thirdGen.showWorld());
     }
 
     @Test
@@ -66,7 +66,7 @@ class WorldTest {
                 "XX ",
                 "   "
         ).nextGeneration();
-        assertEquals(world("XX ,\nXX ,\n   "), world.toString());
+        assertEquals(world("XX ,\nXX ,\n   "), world.showWorld());
     }
 
     @Test
@@ -77,7 +77,7 @@ class WorldTest {
                 "X  ",
                 "   "
         ).nextGeneration();
-        assertEquals(world("XX ,\nXX ,\n   "), world.toString());
+        assertEquals(world("XX ,\nXX ,\n   "), world.showWorld());
     }
 
     @Test
@@ -88,7 +88,7 @@ class WorldTest {
                 " X ",
                 "   "
         ).nextGeneration();
-        assertEquals(world("   ,\n   ,\n   "), world.toString());
+        assertEquals(world("   ,\n   ,\n   "), world.showWorld());
     }
 
     @Test
@@ -99,7 +99,7 @@ class WorldTest {
                 "XXX",
                 "   "
         ).nextGeneration();
-        assertEquals(world("X X,\nX X,\n X "), world.toString());
+        assertEquals(world("X X,\nX X,\n X "), world.showWorld());
     }
 
     @Test
@@ -110,7 +110,7 @@ class WorldTest {
                 "X  ",
                 "   "
         ).nextGeneration();
-        assertEquals(world("XX ,\nXX ,\n   "), world.toString());
+        assertEquals(world("XX ,\nXX ,\n   "), world.showWorld());
     }
 
     @Test
@@ -121,7 +121,7 @@ class WorldTest {
                 "X  ",
                 "   "
         ).nextGeneration();
-        assertEquals(world("   ,\n   ,\n   "), world.toString());
+        assertEquals(world("   ,\n   ,\n   "), world.showWorld());
     }
 
     @Test
@@ -132,7 +132,7 @@ class WorldTest {
                 "X X",
                 "   "
         ).nextGeneration();
-        assertEquals(world("X X,\nX X,\n   "), world.toString());
+        assertEquals(world("X X,\nX X,\n   "), world.showWorld());
     }
 
     @Test
@@ -143,11 +143,11 @@ class WorldTest {
                 "XX"
         );
         World nextGen = world.nextGeneration();
-        assertEquals(world("XX,\nXX"), nextGen.toString());
+        assertEquals(world("XX,\nXX"), nextGen.showWorld());
         
         // Should remain stable in subsequent generations
         World thirdGen = nextGen.nextGeneration();
-        assertEquals(world("XX,\nXX"), thirdGen.toString());
+        assertEquals(world("XX,\nXX"), thirdGen.showWorld());
     }
 
     @Test
@@ -159,7 +159,7 @@ class WorldTest {
                 " XX "
         );
         World nextGen = world.nextGeneration();
-        assertEquals(world(" XX ,\nX  X,\n XX "), nextGen.toString());
+        assertEquals(world(" XX ,\nX  X,\n XX "), nextGen.showWorld());
     }
 
     @Test
@@ -172,9 +172,9 @@ class WorldTest {
                 "    "
         );
         World nextGen = world.nextGeneration();
-        assertEquals(world(" X  ,\n  XX,\n XX ,\n    "), nextGen.toString());
+        assertEquals(world(" X  ,\n  XX,\n XX ,\n    "), nextGen.showWorld());
         
         World thirdGen = nextGen.nextGeneration();
-        assertEquals(world("  X ,\n   X,\n XXX,\n    "), thirdGen.toString());
+        assertEquals(world("  X ,\n   X,\n XXX,\n    "), thirdGen.showWorld());
     }
 }
